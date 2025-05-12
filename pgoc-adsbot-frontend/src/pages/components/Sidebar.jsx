@@ -96,7 +96,7 @@ const Sidebar = ({
         }
       } catch (error) {
         notify('Failed to fetch invite code', 'error');
-        console.error('Error fetching invite code:', error);
+        //console.error('Error fetching invite code:', error);
       } finally {
         setIsLoading(false);
       }
@@ -105,7 +105,7 @@ const Sidebar = ({
       try {
         // Get the token using the getUserData function
         const userDataObj = getUserData();
-        console.log('User data object:', userDataObj); // Debug log
+        // console.log('User data object:', userDataObj); // Debug log
 
         if (!userDataObj || !userDataObj.accessToken) {
           console.error('No user data or access token found');
@@ -113,8 +113,8 @@ const Sidebar = ({
           return;
         }
 
-        console.log('Checking relationship for user:', userData.id); // Debug log
-        const response = await fetch(`${apiUrl}/api/v1/user/relationships/${userData.id}`, {
+        // console.log('Checking relationship for user:', userData.id); // Debug log
+        const response = await fetch(`${apiUrl}/api/v1/check-relationship?user_id=${userData.id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ const Sidebar = ({
         });
 
         const data = await response.json();
-        console.log('Relationship check response:', data); // Debug log
+        // console.log('Relationship check response:', data); // Debug log
 
         if (response.ok) {
           if (data.relationship) {
@@ -136,7 +136,7 @@ const Sidebar = ({
             setOpenInviteInputDialog(true);
           }
         } else {
-          console.error('Error response:', data); // Debug log
+          // console.error('Error response:', data); // Debug log
           if (data.msg === 'Not enough segments') {
             notify('Session expired. Please log in again.', 'error');
             // Only redirect if we're sure the token is invalid
@@ -149,7 +149,7 @@ const Sidebar = ({
           }
         }
       } catch (error) {
-        console.error('Error checking relationship:', error);
+        // console.error('Error checking relationship:', error);
         notify('Error checking relationship status', 'error');
         setOpenInviteInputDialog(true);
       }
@@ -194,7 +194,7 @@ const Sidebar = ({
       }
     } catch (error) {
       notify('Failed to generate new invite code', 'error');
-      console.error('Error generating invite code:', error);
+      // console.error('Error generating invite code:', error);
     } finally {
       setIsLoading(false);
     }
@@ -246,7 +246,7 @@ const Sidebar = ({
       }
     } catch (error) {
       notify('Error processing invite code', 'error');
-      console.error('Error:', error);
+      // console.error('Error:', error);
     } finally {
       setIsSubmitting(false);
     }

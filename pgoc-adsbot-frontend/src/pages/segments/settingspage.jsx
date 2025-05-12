@@ -579,7 +579,7 @@ const SettingsPage = () => {
         {canAccessTokenSection && (
           <TabPanel value={activeTab} index={2}>
             <Box sx={{ px: 3 }}>
-              <Typography variant="h6" mb={2}>Manage User Relationships</Typography>
+              <Typography variant="h6" mb={2}>User Management</Typography>
               <DynamicTable
                 headers={["client_name", "client_email", "client_role", "created_at", "Actions"]}
                 data={relationships}
