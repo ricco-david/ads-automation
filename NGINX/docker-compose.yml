@@ -1,0 +1,21 @@
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    ports:
+      - "80:80"      # HTTP
+      - "443:443"    # HTTPS
+      - "81:81"      # Admin UI
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+    restart: unless-stopped
+
+volumes:
+  npm_data:
+  npm_letsencrypt:
+
+networks:
+  default:
+    external:
+      name: npm-network
